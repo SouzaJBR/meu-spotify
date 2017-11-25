@@ -34,7 +34,7 @@ class Home extends Component {
 
     render() {
         return (<div>
-            <GridList style={{ backgroundColor: "yellow" }}>
+            <GridList style={{ backgroundColor: "#191414" }}>
                 {this.state.albums.map(function (album, index) {
                     return <AlbumTile name={album.name} image={album.images[1].url} key={index} albumId={album.id} />
                 })}

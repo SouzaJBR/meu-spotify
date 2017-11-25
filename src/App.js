@@ -5,11 +5,12 @@ import Spotify from 'spotify-web-api-js';
 import AlbumTile from './AlbumTile';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Album from './Album'
 import Home from './Home';
 
 class App extends Component {
 
-  static token = 'BQBEP4aNNbhQ1rOsFY6ugl8i3SqXuXU-F2qpAR5Rcwitg2FOWjQblRn4pNm2OHBYovNQnI3euXx0FJptbcsU2J_ouGbzpQjVcBs6qnFSAqoAS3DsGSWftc72KJFy8tu3PR7ff7USH2s_';
+  static token = 'BQAPmjYrKA_K8-pyaGRLLrxJvqu4PSi7FBQnsuN8_3GXFYRtfBI9ljS9HaytveawREZfD0WpNDX-Si_R_lATAeWcp3WY6AQOhk0ZNCK_HfQZCF_xfUwr0SpwEfen0BNJILPqjUh7MmSX';
   static spotifyApi = null;
 
   constructor() {
@@ -35,7 +36,7 @@ class App extends Component {
     this.styles = styles;
   }
 
- 
+
 
   render() {
 
@@ -53,27 +54,12 @@ class App extends Component {
               <img src={logo} className="App-logo" alt="logo" />
               <h1 className="App-title">Meu Spotify</h1>
             </header>
-            <p className="App-intro">
-            </p>
 
-            <Route path="/" exact={true} component={Home}/>
+            <Route path="/" exact={true} component={Home} />
 
-            <Route path="/album/:albumId" render={({match}) => {
-              const targetAlbum = this.state.albums.find((album) => album.id === match.params.albumId);
-
-              if(targetAlbum)
-              {
-                return (
-                  <div>
-                  <p>{targetAlbum.name}</p>
-                  <p>{targetAlbum.id}</p>              
-                  </div>
-                );
-              }
-
-              else
-                return(<h1>{match.params.albumId} not found</h1>)
-            }} />
+            <Route path="/album/:albumId" render={({match})=>{
+              return (<Album albumId={match.params.albumId} />);
+            }}/>
 
           </div>
 
